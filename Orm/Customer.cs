@@ -45,6 +45,7 @@ namespace FirstXafProject.Orm
         bool active;
         string name;
 
+        [RuleRequiredField(CustomerValidationRulesId.CustomerNameIsRequired, DefaultContexts.Save)]
         [Size(SizeAttribute.DefaultStringMappingFieldSize)]
         public string Name
         {
