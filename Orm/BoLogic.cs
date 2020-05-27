@@ -18,6 +18,22 @@ namespace FirstXafProject.Orm
             }
 
         }
+        public static void CreateCustomer( string CustomerCode,string Name)
+        {
+            using (var UoW = XpoHelper.CreateUnitOfWork())
+            {
+                var CustomerInstance = UoW.FindObject<Customer>(new BinaryOperator(nameof(Customer.Code), CustomerCode));
+
+                if(CustomerInstance==null)
+                {
+                    CustomerInstance = new Customer(UoW) { Code = CustomerCode, Name = Name };
+                }
+
+                if (UoW.InTransaction)
+                    UoW.CommitChanges();
+            }
+
+        }
 
     }
 }
