@@ -26,6 +26,13 @@ namespace FirstXafProject.WindowsService
         protected override void OnStart(string[] args)
         {
             XpoHelper.InitXpo(_ConnectionString);
+
+            var Ds = new DevExpress.Xpo.DB.InMemoryDataStore(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema, true);
+            XpoHelper.InitXpo(Ds);
+
+            BoLogic.CreateCustomer("001", "Joche Ojeda");
+
+            BoLogic.CreateInvoice(new System.DateTime(2020, 1, 1), "001");
         }
 
         protected override void OnStop()
