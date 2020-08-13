@@ -24,8 +24,10 @@ namespace FirstXafProject.Module {
         public FirstXafProjectModule() {
             InitializeComponent();
 			BaseObject.OidInitializationMode = OidInitializationMode.AfterConstruction;
-            this.AdditionalExportedTypes.Add(typeof(Invoice));
-            this.AdditionalExportedTypes.Add(typeof(Customer));
+            //this.AdditionalExportedTypes.Add(typeof(Invoice));
+            //this.AdditionalExportedTypes.Add(typeof(Customer));
+            //XafTypesInfo.Instance.RegisterEntity(typeof(Invoice));
+            //XafTypesInfo.Instance.RegisterEntity(typeof(Customer));
 
         }
         public override IEnumerable<ModuleUpdater> GetModuleUpdaters(IObjectSpace objectSpace, Version versionFromDB) {

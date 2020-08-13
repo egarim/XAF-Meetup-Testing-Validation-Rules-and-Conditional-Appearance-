@@ -12,7 +12,7 @@ using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 
-namespace FirstXafProject.Module.BusinessObjects
+namespace FirstXafProject.Orm
 {
     [DefaultClassOptions]
     //[ImageName("BO_Contact")]

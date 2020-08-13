@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
+using DevExpress.ExpressApp.ConditionalAppearance;
 
 namespace FirstXafProject.Orm
 {
@@ -59,7 +60,7 @@ namespace FirstXafProject.Orm
             set => SetPropertyValue(nameof(Active), ref active, value);
         }
 
-        
+        [Appearance("DisableMaxCredit", Criteria = "!Active", Enabled = false)]
         public decimal MaxCredit
         {
             get => maxCredit;

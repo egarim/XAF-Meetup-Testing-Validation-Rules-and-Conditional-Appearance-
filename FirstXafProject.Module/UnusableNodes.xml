@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <BOModel Id="BOModel">
+    <Class Name="FirstXafProject.Module.BusinessObjects.Invoice" Caption="The Invoice" />
+  </BOModel>
+  <Views Id="Views">
+    <DetailView Id="MyCustomDetailView" ClassName="FirstXafProject.Module.BusinessObjects.Customer" Caption="MyCustomDetailView">
+      <Items Id="Items">
+        <PropertyEditor Id="Active" PropertyName="Active" />
+        <PropertyEditor Id="MaxCredit" PropertyName="MaxCredit" />
+        <PropertyEditor Id="Name" PropertyName="Name" />
+        <PropertyEditor Id="Oid" PropertyName="Oid" />
+      </Items>
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main" Index="0" ShowCaption="False">
+          <LayoutGroup Id="SimpleEditors" Index="0" ShowCaption="False">
+            <LayoutGroup Id="Customer" Index="0" ShowCaption="False">
+              <LayoutItem Id="Name" ViewItem="Name" Index="0" />
+              <LayoutItem Id="Active" ViewItem="Active" Index="1" />
+              <LayoutItem Id="MaxCredit" ViewItem="MaxCredit" Index="2" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="MyCustomCustomerView" ClassName="FirstXafProject.Module.BusinessObjects.Customer" Caption="My Custom Customer View" DetailViewID="MyCustomDetailView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="Name" PropertyName="Name" Index="0" Width="400" SortIndex="0" SortOrder="Ascending" />
+        <ColumnInfo Id="Active" PropertyName="Active" Index="1" Width="50" />
+      </Columns>
+    </ListView>
+  </Views>
+  <NavigationItems Id="NavigationItems">
+    <Items Id="Items">
+      <Item Id="MyNavigation">
+        <Items Id="Items">
+          <Item Id="@bb065801-024b-4751-aa66-dd174cfe3d02" ViewId="MyCustomCustomerView" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+</Application>

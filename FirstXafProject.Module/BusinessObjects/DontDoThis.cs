@@ -12,7 +12,7 @@ using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 
-namespace FirstXafProject.Orm
+namespace FirstXafProject.Module.BusinessObjects
 {
     [DefaultClassOptions]
     //[ImageName("BO_Contact")]
@@ -20,9 +20,9 @@ namespace FirstXafProject.Orm
     //[DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.None)]
     //[Persistent("DatabaseTableName")]
     // Specify more UI options using a declarative approach (https://documentation.devexpress.com/#eXpressAppFramework/CustomDocument112701).
-    public class Invoice : BaseObject
+    public class DontDoThis : BaseObject
     { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
-        public Invoice(Session session)
+        public DontDoThis(Session session)
             : base(session)
         {
         }
@@ -32,27 +32,34 @@ namespace FirstXafProject.Orm
             // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
         }
 
-        bool isPosted;
-        Customer customer;
-        DateTime date;
+        bool active;
 
-        public DateTime Date
+        public bool Active
         {
-            get => date;
-            set => SetPropertyValue(nameof(Date), ref date, value);
-        }
-
-        [Association("Customer-Invoices")]
-        public Customer Customer
-        {
-            get => customer;
-            set => SetPropertyValue(nameof(Customer), ref customer, value);
+            get { return active; }
+            set
+            {
+                if (active == value)
+                    return;
+                active = value;
+                RaisePropertyChangedEvent(nameof(Active));
+            }
         }
         
-        public bool IsPosted
+        //private string _PersistentProperty;
+        //[XafDisplayName("My display name"), ToolTip("My hint message")]
+        //[ModelDefault("EditMask", "(000)-00"), Index(0), VisibleInListView(false)]
+        //[Persistent("DatabaseColumnName"), RuleRequiredField(DefaultContexts.Save)]
+        //public string PersistentProperty {
+        //    get { return _PersistentProperty; }
+        //    set { SetPropertyValue(nameof(PersistentProperty), ref _PersistentProperty, value); }
+        //}
+
+        [Action(Caption = "My UI Action", ConfirmationMessage = "Are you sure?", ImageName = "Attention", AutoCommit = true)]
+        public void ActionMethod()
         {
-            get => isPosted;
-            set => SetPropertyValue(nameof(IsPosted), ref isPosted, value);
+            // Trigger a custom business logic for the current record in the UI (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112619.aspx).
+            this.Active = true;
         }
     }
 }

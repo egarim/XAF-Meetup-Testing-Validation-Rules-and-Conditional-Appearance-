@@ -8,34 +8,19 @@ using NUnit.Framework;
 
 namespace FirstXafProject.Test
 {
-    public class Tests
+    public class ValidationsTests
     {
         private IObjectSpace objectSpace;
         [SetUp]
         public virtual void SetUp()
         {
-            objectSpace = new XPObjectSpaceProvider(new MemoryDataStoreProvider()).CreateObjectSpace();
-     
-            //XafTypesInfo.Instance.RegisterEntity("Customer", typeof(Customer));
-            //XafTypesInfo.Instance.GenerateEntities();
+            XPObjectSpaceProvider objectSpaceProvider =  new XPObjectSpaceProvider(new MemoryDataStoreProvider());
+          
+          
+             objectSpace = objectSpaceProvider.CreateObjectSpace();
         }
 
-        [Test]
-        public void TestBusinessObject()
-        {
-
-            var Ds = new DevExpress.Xpo.DB.InMemoryDataStore(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema, true);
-            XpoHelper.InitXpo(Ds);
-
-            BoLogic.CreateCustomer("001", "Joche Ojeda");
-
-            BoLogic.CreateInvoice(new System.DateTime(2020, 1, 1), "001");
-
-             var Count= XpoHelper.CreateUnitOfWork().Query<Invoice>().Count();
-
-
-            Assert.AreEqual(1, Count);
-        }
+       
        
         [Test]
         public void TestValidationRule()

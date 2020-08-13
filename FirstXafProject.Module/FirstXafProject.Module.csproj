@@ -38,40 +38,40 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Data.v19.2">
+    <Reference Include="DevExpress.Data.v20.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.CloneObject.v19.2">
+    <Reference Include="DevExpress.ExpressApp.CloneObject.v20.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Objects.v19.2">
+    <Reference Include="DevExpress.ExpressApp.Objects.v20.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Security.v19.2">
+    <Reference Include="DevExpress.ExpressApp.Security.v20.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Security.Xpo.v19.2">
+    <Reference Include="DevExpress.ExpressApp.Security.Xpo.v20.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.v19.2">
+    <Reference Include="DevExpress.ExpressApp.v20.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Validation.v19.2">
+    <Reference Include="DevExpress.ExpressApp.Validation.v20.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Xpo.v19.2">
+    <Reference Include="DevExpress.ExpressApp.Xpo.v20.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Persistent.Base.v19.2">
+    <Reference Include="DevExpress.Persistent.Base.v20.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Persistent.BaseImpl.v19.2">
+    <Reference Include="DevExpress.Persistent.BaseImpl.v20.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Printing.v19.2.Core">
+    <Reference Include="DevExpress.Printing.v20.1.Core">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Xpo.v19.2">
+    <Reference Include="DevExpress.Xpo.v20.1">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="mscorlib">
@@ -98,6 +98,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessObjects\Customer.cs" />
+    <Compile Include="BusinessObjects\DontDoThis.cs" />
+    <Compile Include="BusinessObjects\Invoice.cs" />
     <Compile Include="Controllers\InvoiceController.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -118,6 +121,9 @@
       <DependentUpon>InvoiceController.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Model.DesignedDiffs.xafml" />
+    <EmbeddedResource Include="Module.resx">
+      <DependentUpon>Module.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <ItemGroup>
@@ -136,10 +142,14 @@
     <None Include="Welcome.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Orm\FirstXafProject.Orm.csproj">
-      <Project>{71375985-562f-4a38-880e-5ef4c507572c}</Project>
-      <Name>FirstXafProject.Orm</Name>
-    </ProjectReference>
+    <EmbeddedResource Include="Images\database-icon.png" />
+    <EmbeddedResource Include="Images\database-icon_Lage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="UnusableNodes.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

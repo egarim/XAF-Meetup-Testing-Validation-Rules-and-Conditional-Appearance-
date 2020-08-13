@@ -1,13 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Application Title="FirstXafProject">
-  <BOModel>
-    <Class Name="FirstXafProject.Module.BusinessObjects.Invoice" Caption="The Invoice" />
-  </BOModel>
   <NavigationItems>
     <Items>
       <Item Id="MyNavigation" Caption="MyNavigation" IsNewNode="True">
         <Items IsNewNode="True">
-          <Item Id="@bb065801-024b-4751-aa66-dd174cfe3d02" ViewId="MyCustomCustomerView" IsNewNode="True" />
+          <Item Id="@36add503-5a37-47a1-8d33-dc87b9700769" ViewId="Invoice_ListView" IsNewNode="True" />
+          <Item Id="@bb065801-024b-4751-aa66-dd174cfe3d02" ViewId="Customer_ListView" IsNewNode="True" />
         </Items>
       </Item>
     </Items>
@@ -46,30 +44,5 @@
         <ColumnInfo Id="MaxCredit" Removed="True" />
       </Columns>
     </ListView>
-    <ListView Id="MyCustomCustomerView" ClassName="FirstXafProject.Module.BusinessObjects.Customer" Caption="My Custom Customer View" DetailViewID="MyCustomDetailView" IsNewNode="True">
-      <Columns IsNewNode="True">
-        <ColumnInfo Id="Name" PropertyName="Name" Index="0" Width="400" SortIndex="0" SortOrder="Ascending" IsNewNode="True" />
-        <ColumnInfo Id="Active" PropertyName="Active" Index="1" Width="50" IsNewNode="True" />
-      </Columns>
-    </ListView>
-    <DetailView Id="MyCustomDetailView" ClassName="FirstXafProject.Module.BusinessObjects.Customer" Caption="MyCustomDetailView" IsNewNode="True">
-      <Items IsNewNode="True">
-        <PropertyEditor Id="Active" PropertyName="Active" IsNewNode="True" />
-        <PropertyEditor Id="MaxCredit" PropertyName="MaxCredit" IsNewNode="True" />
-        <PropertyEditor Id="Name" PropertyName="Name" IsNewNode="True" />
-        <PropertyEditor Id="Oid" PropertyName="Oid" IsNewNode="True" />
-      </Items>
-      <Layout IsNewNode="True">
-        <LayoutGroup Id="Main" Index="0" ShowCaption="False" IsNewNode="True">
-          <LayoutGroup Id="SimpleEditors" Index="0" ShowCaption="False" IsNewNode="True">
-            <LayoutGroup Id="Customer" Index="0" ShowCaption="False" IsNewNode="True">
-              <LayoutItem Id="Name" ViewItem="Name" Index="0" IsNewNode="True" />
-              <LayoutItem Id="Active" ViewItem="Active" Index="1" IsNewNode="True" />
-              <LayoutItem Id="MaxCredit" ViewItem="MaxCredit" Index="2" IsNewNode="True" />
-            </LayoutGroup>
-          </LayoutGroup>
-        </LayoutGroup>
-      </Layout>
-    </DetailView>
   </Views>
 </Application>
