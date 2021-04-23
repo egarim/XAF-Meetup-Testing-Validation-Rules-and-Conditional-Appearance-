@@ -1,4 +1,5 @@
-﻿using FirstXafProject.Orm;
+﻿using DevExpress.ExpressApp.Actions;
+using FirstXafProject.Module.BusinessObjects;
 
 namespace FirstXafProject.Module.Controllers
 {
@@ -42,23 +43,23 @@ namespace FirstXafProject.Module.Controllers
             DevExpress.ExpressApp.Actions.ChoiceActionItem choiceActionItem9 = new DevExpress.ExpressApp.Actions.ChoiceActionItem();
             DevExpress.ExpressApp.Actions.ChoiceActionItem choiceActionItem10 = new DevExpress.ExpressApp.Actions.ChoiceActionItem();
             DevExpress.ExpressApp.Actions.ChoiceActionItem choiceActionItem11 = new DevExpress.ExpressApp.Actions.ChoiceActionItem();
-            this.saSetActive = new DevExpress.ExpressApp.Actions.SimpleAction(this.components);
+            this.SaSetActive = new DevExpress.ExpressApp.Actions.SimpleAction(this.components);
             this.SaModifySave = new DevExpress.ExpressApp.Actions.SimpleAction(this.components);
             this.parametrizedAction1 = new DevExpress.ExpressApp.Actions.ParametrizedAction(this.components);
             this.singleChoiceAction1 = new DevExpress.ExpressApp.Actions.SingleChoiceAction(this.components);
-            this.singleChoiceActionFromCode = new DevExpress.ExpressApp.Actions.SingleChoiceAction(this.components);
+            this.SingleChoiceActionFromCode = new DevExpress.ExpressApp.Actions.SingleChoiceAction(this.components);
             this.popup = new DevExpress.ExpressApp.Actions.PopupWindowShowAction(this.components);
             this.popupWindowShowAction1 = new DevExpress.ExpressApp.Actions.PopupWindowShowAction(this.components);
             this.PostInvoice = new DevExpress.ExpressApp.Actions.SimpleAction(this.components);
             // 
             // saSetActive
             // 
-            this.saSetActive.Caption = "Set Active";
-            this.saSetActive.ConfirmationMessage = null;
-            this.saSetActive.Id = "InvoiceControllerSaSetActive";
-            this.saSetActive.ImageName = "database-icon";
-            this.saSetActive.ToolTip = null;
-            this.saSetActive.Execute += new DevExpress.ExpressApp.Actions.SimpleActionExecuteEventHandler(this.saSetActive_Execute);
+            this.SaSetActive.Caption = "Set Active";
+            this.SaSetActive.ConfirmationMessage = null;
+            this.SaSetActive.Id = "InvoiceControllerSaSetActive";
+            this.SaSetActive.ImageName = "database-icon";
+            this.SaSetActive.ToolTip = null;
+            this.SaSetActive.Execute += new DevExpress.ExpressApp.Actions.SimpleActionExecuteEventHandler(this.saSetActive_Execute);
             // 
             // SaModifySave
             // 
@@ -157,11 +158,11 @@ namespace FirstXafProject.Module.Controllers
             // 
             // singleChoiceActionFromCode
             // 
-            this.singleChoiceActionFromCode.Caption = "Dynamic Choices";
-            this.singleChoiceActionFromCode.ConfirmationMessage = null;
-            this.singleChoiceActionFromCode.Id = "f258be60-6c28-4ea3-b892-eb8dd59b5e30";
-            this.singleChoiceActionFromCode.ToolTip = null;
-            this.singleChoiceActionFromCode.Execute += new DevExpress.ExpressApp.Actions.SingleChoiceActionExecuteEventHandler(this.singleChoiceActionFromCode_Execute);
+            this.SingleChoiceActionFromCode.Caption = "Dynamic Choices";
+            this.SingleChoiceActionFromCode.ConfirmationMessage = null;
+            this.SingleChoiceActionFromCode.Id = "f258be60-6c28-4ea3-b892-eb8dd59b5e30";
+            this.SingleChoiceActionFromCode.ToolTip = null;
+            this.SingleChoiceActionFromCode.Execute += new DevExpress.ExpressApp.Actions.SingleChoiceActionExecuteEventHandler(this.singleChoiceActionFromCode_Execute);
             // 
             // popup
             // 
@@ -196,15 +197,15 @@ namespace FirstXafProject.Module.Controllers
             // 
             // InvoiceController
             // 
-            this.Actions.Add(this.saSetActive);
+            this.Actions.Add(this.SaSetActive);
             this.Actions.Add(this.SaModifySave);
             this.Actions.Add(this.parametrizedAction1);
             this.Actions.Add(this.singleChoiceAction1);
-            this.Actions.Add(this.singleChoiceActionFromCode);
+            this.Actions.Add(this.SingleChoiceActionFromCode);
             this.Actions.Add(this.popup);
             this.Actions.Add(this.popupWindowShowAction1);
             this.Actions.Add(this.PostInvoice);
-            this.TargetObjectType = typeof(FirstXafProject.Orm.Invoice);
+            this.TargetObjectType = typeof(XafInvoice);
 
         }
 
@@ -218,5 +219,7 @@ namespace FirstXafProject.Module.Controllers
         private DevExpress.ExpressApp.Actions.PopupWindowShowAction popup;
         private DevExpress.ExpressApp.Actions.PopupWindowShowAction popupWindowShowAction1;
         private DevExpress.ExpressApp.Actions.SimpleAction PostInvoice;
+
+       
     }
 }

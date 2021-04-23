@@ -13,7 +13,7 @@ using DevExpress.ExpressApp.Templates;
 using DevExpress.ExpressApp.Utils;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.Validation;
-using FirstXafProject.Orm;
+using FirstXafProject.Module.BusinessObjects;
 
 namespace FirstXafProject.Module.Controllers
 {
@@ -25,10 +25,10 @@ namespace FirstXafProject.Module.Controllers
 
         public SimpleAction MyAction
         {
-            get { return this.saSetActive; }
+            get { return this.SaSetActive; }
             private set
             {
-                this.saSetActive = value;
+                this.SaSetActive = value;
             }
         }
         
@@ -38,11 +38,13 @@ namespace FirstXafProject.Module.Controllers
          
             // Target required Views (via the TargetXXX properties) and create their Actions.
         }
+        public SimpleAction SaSetActive { get => saSetActive; set => saSetActive = value; }
+        public SingleChoiceAction SingleChoiceActionFromCode { get => singleChoiceActionFromCode; set => singleChoiceActionFromCode = value; }
         protected override void OnActivated()
         {
             base.OnActivated();
-            this.singleChoiceActionFromCode.Items.Add(new ChoiceActionItem("Option 1", this.ObjectSpace.FindObject<Customer>(null)));
-            this.singleChoiceActionFromCode.Items.Add(new ChoiceActionItem("Option 2", new DateTime(2020,1,1)));
+            this.SingleChoiceActionFromCode.Items.Add(new ChoiceActionItem("Option 1", this.ObjectSpace.FindObject<XafCustomer>(null)));
+            this.SingleChoiceActionFromCode.Items.Add(new ChoiceActionItem("Option 2", new DateTime(2020,1,1)));
             // Perform various tasks depending on the target View.
         }
         protected override void OnViewControlsCreated()
@@ -54,12 +56,12 @@ namespace FirstXafProject.Module.Controllers
         {
             // Unsubscribe from previously subscribed events and release other references and resources.
             base.OnDeactivated();
-            this.singleChoiceActionFromCode.Items.Clear();
+            this.SingleChoiceActionFromCode.Items.Clear();
         }
 
         private void saSetActive_Execute(object sender, SimpleActionExecuteEventArgs e)
         {
-            var Instance= e.CurrentObject as Customer;
+            var Instance= e.CurrentObject as XafCustomer;
             Instance.Active = true;
             //BoLogic.CreateInvoice()
 
@@ -97,7 +99,7 @@ namespace FirstXafProject.Module.Controllers
         DetailView customerView;
         private void popup_CustomizePopupWindowParams(object sender, CustomizePopupWindowParamsEventArgs e)
         {
-            var CurrentInvoice = this.View.CurrentObject as Invoice;
+            var CurrentInvoice = this.View.CurrentObject as XafInvoice;
             var CustomerOs = this.Application.CreateObjectSpace();
             customerView = this.Application.CreateDetailView(CustomerOs, CustomerOs.GetObject(CurrentInvoice.Customer));
             e.View = customerView;
@@ -105,7 +107,7 @@ namespace FirstXafProject.Module.Controllers
 
         private void popup_Execute(object sender, PopupWindowShowActionExecuteEventArgs e)
         {
-            var Instance = customerView.CurrentObject as Customer;
+            var Instance = customerView.CurrentObject as XafCustomer;
             //TODO do whatever i want
         }
 
@@ -113,7 +115,7 @@ namespace FirstXafProject.Module.Controllers
         {
 
 
-            e.View = this.Application.CreateListView(typeof(Customer), true);
+            e.View = this.Application.CreateListView(typeof(XafCustomer), true);
         }
         void NEwActivated(object sender, EventArgs e)
         {
@@ -122,7 +124,7 @@ namespace FirstXafProject.Module.Controllers
 
         private void PostInvoice_Execute(object sender, SimpleActionExecuteEventArgs e)
         {
-            var CurrentInvoice= this.View.CurrentObject as Invoice;
+            var CurrentInvoice= this.View.CurrentObject as XafInvoice;
             CurrentInvoice.IsPosted = true;
             if (this.View.ObjectSpace.IsModified)
                 this.View.ObjectSpace.CommitChanges();

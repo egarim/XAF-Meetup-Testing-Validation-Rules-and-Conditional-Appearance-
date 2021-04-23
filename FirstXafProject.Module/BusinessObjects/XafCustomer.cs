@@ -12,7 +12,7 @@ using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 
-namespace FirstXafProject.Orm
+namespace FirstXafProject.Module.BusinessObjects
 {
     [DefaultClassOptions]
     //[ImageName("BO_Contact")]
@@ -20,9 +20,9 @@ namespace FirstXafProject.Orm
     //[DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.None)]
     //[Persistent("DatabaseTableName")]
     // Specify more UI options using a declarative approach (https://documentation.devexpress.com/#eXpressAppFramework/CustomDocument112701).
-    public class Invoice : BaseObject
+    public class XafCustomer : BaseObject
     { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
-        public Invoice(Session session)
+        public XafCustomer(Session session)
             : base(session)
         {
         }
@@ -32,27 +32,39 @@ namespace FirstXafProject.Orm
             // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
         }
 
-        bool isPosted;
-        Customer customer;
-        DateTime date;
+        decimal maxCredit;
+        bool active;
+        string name;
 
-        public DateTime Date
+        [Size(SizeAttribute.DefaultStringMappingFieldSize)]
+        public string Name
         {
-            get => date;
-            set => SetPropertyValue(nameof(Date), ref date, value);
+            get => name;
+            set => SetPropertyValue(nameof(Name), ref name, value);
         }
+
+        public bool Active
+        {
+            get => active;
+            set => SetPropertyValue(nameof(Active), ref active, value);
+        }
+
+        
+        public decimal MaxCredit
+        {
+            get => maxCredit;
+            set => SetPropertyValue(nameof(MaxCredit), ref maxCredit, value);
+        }
+
 
         [Association("Customer-Invoices")]
-        public Customer Customer
+        public XPCollection<XafInvoice> Invoices
         {
-            get => customer;
-            set => SetPropertyValue(nameof(Customer), ref customer, value);
+            get
+            {
+                return GetCollection<XafInvoice>(nameof(Invoices));
+            }
         }
-        
-        public bool IsPosted
-        {
-            get => isPosted;
-            set => SetPropertyValue(nameof(IsPosted), ref isPosted, value);
-        }
+
     }
 }

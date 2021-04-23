@@ -9,7 +9,7 @@ using NUnit.Framework;
 
 namespace FirstXafProject.Test
 {
-    public class ConditionalApperanceTest
+        public class ConditionalAppearanceTest
     {
         private Customer Customer;
         private FakeAppearanceTarget target;
